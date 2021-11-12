@@ -1,5 +1,3 @@
-require 'pp'
-
 module Exercise
   module Fp
     class << self
