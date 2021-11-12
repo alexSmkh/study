@@ -7,7 +7,6 @@ module Exercise
       # film["name"], film["rating_kinopoisk"], film["rating_imdb"],
       # film["genres"], film["year"], film["access_level"], film["country"]
       def rating(array)
-        #  _array.each {|el| puts el['country']}
         films = array.filter do |film|
           film['rating_kinopoisk'].to_f.positive? &&
             !film['country'].nil? &&
