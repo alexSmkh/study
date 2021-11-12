@@ -10,12 +10,12 @@ module Exercise
             !film['country'].nil? &&
             film['country'].split(',').length >= 2
         end
-        ratings = films.reduce(0) { |acc, film| acc + film['rating_kinopoisk'].to_f }
-        ratings / films.count
+        ratings = films.map { |film| film['rating_kinopoisk'].to_f }
+        ratings.reduce(&:+) / ratings.count
       end
 
       def chars_count(films, threshold)
-        films
+        films\
           .filter { |film| film['rating_kinopoisk'].to_f >= threshold }
           .reduce(0) { |acc, film| acc + film['name'].split('').count('и') }
       end
