@@ -13,23 +13,21 @@ module Exercise
       end
 
       def search(array, query)
-        no_found_value = -1
-        left_index = 0
-        right_index = array.length - 1
+        iter = lambda  do |left, right|
+          return -1 if (right - left).negative?
 
-        while right_index >= left_index
-          middle_index = (right_index + left_index) / 2
-          middle_value = array[middle_index]
-          return middle_index if middle_value == query
+          mid_index = (right + left) / 2
+          mid_value = array[mid_index]
+          return mid_index if query == mid_value
 
-          if middle_value > query
-            right_index = middle_index - 1
+          if mid_value > query
+            iter.call(left, mid_index - 1)
           else
-            left_index = middle_index + 1
+            iter.call(mid_index + 1, right)
           end
         end
 
-        no_found_value
+        iter.call(0, array.length - 1)
       end
     end
   end
