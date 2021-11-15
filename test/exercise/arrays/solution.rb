@@ -2,9 +2,7 @@ module Exercise
   module Arrays
     class << self
       def find_max(array)
-        max = array[0]
-        array.each { |element| max = element if element > max }
-        max
+        array.reduce { |acc, el| el > acc ? el : acc }
       end
 
       def replace(array)
