@@ -22,7 +22,7 @@ module Exercise
       # Написать свою функцию my_compact
       def my_compact
         my_reduce(MyArray.new) do |acc, element|
-          element.nil? ? MyArray.new([*acc]) : MyArray.new([*acc, element])
+          element.nil? ? acc : MyArray.new([*acc, element])
         end
       end
 
