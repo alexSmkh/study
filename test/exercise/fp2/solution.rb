@@ -7,15 +7,15 @@ module Exercise
       # Написать свою функцию my_each
       def my_each(&func)
         head, *tail = self
-        yield head
+        yield(head)
         arr = tail.empty? ? [head] : [head, *MyArray.new(tail).my_each(&func)]
-        MyArray.new arr
+        MyArray.new(arr)
       end
 
       # Написать свою функцию my_map
       def my_map
         my_reduce(MyArray.new) do |acc, element|
-          MyArray.new [*acc, yield(element)]
+          MyArray.new([*acc, yield(element)])
         end
       end
 
@@ -31,7 +31,7 @@ module Exercise
         head, *tail = self
         return yield(init, head) if tail.empty?
 
-        my_arr = MyArray.new tail
+        my_arr = MyArray.new(tail)
 
         init.nil? ? my_arr.my_reduce(head, &func) : my_arr.my_reduce(yield(init, head), &func)
       end
