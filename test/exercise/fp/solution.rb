@@ -15,7 +15,7 @@ module Exercise
       end
 
       def chars_count(films, threshold)
-        films\
+        films
           .filter { |film| film['rating_kinopoisk'].to_f >= threshold }
           .reduce(0) { |acc, film| acc + film['name'].count('и') }
       end
